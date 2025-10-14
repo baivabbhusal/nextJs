@@ -1,0 +1,7 @@
+export const HOME_ROUTE="/"
+export const About_ROUTE="/about"
+export const PRODUCT_ROUTE="/products"
+export const BLOGS_ROUTE="/blogs"
+export const CONTACT_ROUTE="/contact"
+export const LOGIN_ROUTE="/login"
+export const REGISTER_ROUTE="/register"
