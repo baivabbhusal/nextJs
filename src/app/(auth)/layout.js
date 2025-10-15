@@ -5,7 +5,7 @@ const layout = ({children}) => {
 <html>
     <body>
             <div>
-        <h2 className='text-2xl text-amber-200 bg-green-300'>Welcome to Dokan</h2>
+        <h2 className='text-2xl text-amber-200 bg-green-300 text-center'>Welcome to Dokan</h2>
     </div>
     {children}
     </body>

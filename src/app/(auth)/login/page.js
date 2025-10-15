@@ -3,15 +3,14 @@ import { login } from "@/api/auth"
 import React from 'react'
 
 const LoginPage = () => {
-  const { register }=useForm();
-  const email=
+  // const { register }=useForm();
 
 
   async function login(){
     try {
       const response=await login({
-        email:"samarajyastha@gmail.com",
-        password:"Test@123456",
+        email:"hari@gmail.com",
+        password:"Test@12345",
 
       }) ;
       console.log(response);
@@ -28,9 +27,9 @@ const LoginPage = () => {
              <input type="email" placeholder="Enter a email" />
             <label className='block'>Password</label>
              <input type="password" placeholder="Enter a password" />
-        </form>
         <br></br>
-        <button type="submit" className="bg-amber-400 text-2xl text-amber-50 w-1/3 ">Submit</button>
+        <button type="submit" className="bg-amber-400 text-2xl text-amber-50 px-3.5 my-1" onClick={login}>Login</button>
+        </form>
     </div>
   )
 }
