@@ -6,7 +6,7 @@ const LoginPage = () => {
   // const { register }=useForm();
 
 
-  async function login(){
+  async function loginUser(){
     try {
       const response=await login({
         email:"hari@gmail.com",
@@ -28,7 +28,7 @@ const LoginPage = () => {
             <label className='block'>Password</label>
              <input type="password" placeholder="Enter a password" />
         <br></br>
-        <button type="submit" className="bg-amber-400 text-2xl text-amber-50 px-3.5 my-1" onClick={login}>Login</button>
+        <button type="button" className="bg-amber-400 text-2xl text-amber-50 px-3.5 my-1" onClick={loginUser}>Login</button>
         </form>
     </div>
   )
