@@ -24,9 +24,9 @@ const LoginPage = () => {
 
         <form>
             <label className='block'>Email</label>
-             <input type="email" placeholder="Enter a email" />
+             <input type="email" name="email" placeholder="Enter a email" />
             <label className='block'>Password</label>
-             <input type="password" placeholder="Enter a password" />
+             <input type="password" name="password" placeholder="Enter a password" />
         <br></br>
         <button type="button" className="bg-amber-400 text-2xl text-amber-50 px-3.5 my-1" onClick={loginUser}>Login</button>
         </form>
