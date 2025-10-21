@@ -30,7 +30,7 @@ const LoginPage = () => {
             <label className='block'>Password</label>
              <input type="password" {...register("password")} placeholder="Enter a password" />
         <br></br>
-        <button type="button" className="bg-amber-400 text-2xl text-amber-50 px-3.5 my-1" onClick={submitForm}>Login</button>
+        <button type="submit" className="bg-amber-400 text-2xl text-amber-50 px-3.5 my-1">Login</button>
         </form>
     </div>
   )
