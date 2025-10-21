@@ -8,17 +8,12 @@ const LoginPage = () => {
 
 
   async function submitForm(data){
-    console.log(data)
-    // try {
-    //   const response=await login({
-    //     email:"hari@gmail.com",
-    //     password:"Test@12345",
-
-    //   }) ;
-    //   console.log(response);
-    // } catch (error) {
-    //   console.log(error)
-    // }
+    try {
+      const response=await login(data);
+      console.log(response);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
