@@ -15,7 +15,6 @@ const LoginPage = () => {
       console.log(error)
     }
   }
-
   return (
     <div className='flex justify-center'>
 
@@ -25,7 +24,7 @@ const LoginPage = () => {
             <label className='block'>Password</label>
              <input type="password" {...register("password")} placeholder="Enter a password" />
         <br></br>
-        <button type="submit" className="bg-amber-400 text-2xl text-amber-50 px-3.5 my-1">Login</button>
+        <input type="submit" className="bg-amber-400 text-2xl text-amber-50 px-3.5 my-1" value={"Login"}></input>
         </form>
     </div>
   )
