@@ -21,40 +21,37 @@ const LoginPage = () => {
   }
   return (
     <div className="flex justify-center">
-      <form onSubmit={handleSubmit(submitForm)}>
-        <label className="block">Email</label>
-        <input
-          type="email"
-          {...register("email", {
+<form className="max-w-sm mx-auto" onSubmit={handleSubmit(submitForm)}>
+  <div className="mb-5">
+    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+    <input type="email" id="email"
+    {...register("email", {
             required: "Email is required",
             pattern: {
               value: EMAIL_REGEX,
               message: "Invalid email address.",
             },
           })}
-          placeholder="Enter a email"
-        />
-        <p>{errors.email?.message}</p>
-        <label className="block">Password</label>
-        <input
-          type="password"
-          {...register("password", {
+           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+           <p>{errors.email?.message}</p>
+  </div>
+  <div className="mb-5">
+    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+    <input type="password" id="password"
+     {...register("password", {
             required: "Password is required",
             minLength:{
               value:6,
               message:"Password length must be greather than 6."
             }
           })}
-          placeholder="Enter a password"
-        />
-        <p>{errors.password?.message}</p>
-        <br></br>
-        <input
-          type="submit"
-          className="bg-amber-400 text-2xl text-amber-50 px-3.5 my-1"
-          value={"Login"}
-        ></input>
-      </form>
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+          <p>{errors.password?.message}</p>
+  </div>
+  <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+</form>
+
+
     </div>
   );
 };
