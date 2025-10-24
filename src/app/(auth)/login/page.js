@@ -20,7 +20,6 @@ const LoginPage = () => {
     }
   }
   return (
-    <div className="flex justify-center">
 <form className="max-w-sm mx-auto" onSubmit={handleSubmit(submitForm)}>
   <div className="mb-5">
     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
@@ -52,7 +51,6 @@ const LoginPage = () => {
 </form>
 
 
-    </div>
   );
 };
 
