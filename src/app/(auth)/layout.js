@@ -8,7 +8,7 @@ const layout = ({children}) => {
  </div>
   <div>{children}</div>
 
-</section>>
+</section>
     
   )
 }
