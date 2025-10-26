@@ -21,6 +21,10 @@ const Navlinks=[
         route:BLOGS_ROUTE,
         label:"Blogs"
     },
+    // {
+    //     route:REGISTER_ROUTE,
+    //     label:"Register"
+    // }
 ]
 
 export default Navlinks
