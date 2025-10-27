@@ -1,18 +1,25 @@
 import React from 'react'
 import emptyImage from "@/assets/images/products/imagePlaceholder.png"
 import Image from 'next/image';
+import Logo from '@/components/logo';
+import manWear from "@/assets/images/loginDesign/manWear.jpg"
 
 const layout = ({children}) => {
   return (
-<section className='flex items-center justify-center h-screen bg-slate-100'>
+<section className='flex py-20 md:items-center justify-center h-screen bg-slate-100'>
  <div className='container mx-auto px-4'>
-  <div className='flex justify-center items-center bg-white'>
-    <Image
-     href={ emptyImage }
-     width={300}
-     height={300} 
+  <div className='flex justify-center'>
+      <div className='grid grid-cols-1 md:grid-cols-2 justify-center items-center bg-white'>
+    <div className='hidden md:flex flex-col justify-evenly p-3 h-full'>
+      <h1 className='text-3xl font-bold text-center'>Welcome back</h1>
+      <Image 
+      src={manWear}
+      className='rounded-4xl'
       ></Image>
+    </div>
       <div>{children}</div>
+
+  </div>
 
   </div>
 
