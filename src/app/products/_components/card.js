@@ -9,18 +9,6 @@ import LoadingCard from "../loading";
 
 const ProductCard = ({ product }) => {
   return (
-    // <div className='shadow p-4 rounded-2xl bg-slate-200'>
-    //     <h2 className='text-2xl font-bold'>
-    //     <Link href={`/products/${product.id}`}>{product.name}</Link>
-    //       </h2>
-    //     <div className='flex items-center gap-2'>
-    //     <span className='bg-red-300 p-1'>{product.brand}</span>
-    //     <span className='bg-amber-100 p-1'>{product.category}</span>
-    //     </div>
-    //     <p>Rs.{product.price}</p>
-    //     <button className='border bg-amber-400 text-gray-600 p-1 rounded-xl'>Add to Cart</button>
-    // </div>
-
     <div className="bg-white rounded-lg shadow-md">
       <div className="relative">
         <Link href={`${PRODUCT_ROUTE}/${product._id}`}>
@@ -31,7 +19,7 @@ const ProductCard = ({ product }) => {
             height={300}
             width={300}
 
-          />
+          ></Image>
         </Link>
 
         <span className="absolute top-2 left-2 bg-red-500 text-white rounded-full text-xs py-3 px-1">

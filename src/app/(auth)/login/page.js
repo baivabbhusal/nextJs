@@ -3,7 +3,9 @@ import { login } from "@/api/auth";
 import { useForm } from "react-hook-form";
 import { EMAIL_REGEX } from "@/constants/regex";
 import Link from "next/link";
-import { REGISTER_ROUTE } from "@/constants/routes";
+import { HOME_ROUTE, REGISTER_ROUTE } from "@/constants/routes";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const {
@@ -11,14 +13,25 @@ const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const router=useRouter();
   const email = register("email");
 
   async function submitForm(data) {
     try {
       const response = await login(data);
       console.log(response);
-    } catch (error) {
-      console.log(error);
+      localStorage.setItem("authToken",response.data?.authToken);
+      toast.success("Login Sucessfull",{
+        autoClose:1000,
+      })
+      router.push(HOME_ROUTE)
+    }
+     catch (error) {
+      toast.error(error.response?.data,{
+        autoClose:1000,
+
+      })
     }
   }
 
