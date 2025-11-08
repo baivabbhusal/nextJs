@@ -4,7 +4,7 @@ import Logo from './logo'
 import NavbarMenu from './navbar'
 import { LOGIN_ROUTE } from '@/constants/routes'
 import { BsCart3 } from "react-icons/bs";
-import AuthMenu from './AuthMenu'
+import AuthMenu from './AuthMenu';
 
 const Header = () => {
   return (
