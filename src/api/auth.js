@@ -9,8 +9,6 @@ async function login({email,password}){
 }
 
 async function signup(data){
-    return await axios.post(`${config.apiUrl}/api/auth/register`,{
-     data
-    })
+    return await axios.post(`${config.apiUrl}/api/auth/register`,data)
 }
 export { login ,signup};

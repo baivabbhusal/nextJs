@@ -20,6 +20,7 @@ const router=useRouter();
         name:data.name,
         email:data.email,
         password:data.password,
+        confirmPassword:data.confirmPassword,
         phone:data.phone,
         address:{
           city:data.city,
@@ -30,7 +31,7 @@ const router=useRouter();
       toast.success("Account created sucessfully.",{
         autoClose:1000,
       })
-      router.push(HOME_ROUTE)
+      router.push(LOGIN_ROUTE)
     }
      catch (error) {
       toast.error(error.response?.data,{

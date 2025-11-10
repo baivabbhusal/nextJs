@@ -3,15 +3,25 @@ import React from 'react'
 import { LOGIN_ROUTE } from '@/constants/routes'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
+import { useState,useEffect } from 'react';
 
 const AuthMenu = () => {
-    const authToken=localStorage.getItem("authToken");
+   const [authToken,setAuthToken]=useState(null);
      const router=useRouter();
+    
+     useEffect(()=>{
+      const token=localStorage.getItem("authToken");
+      setAuthToken(token);
+
+     },[]
+     );
+     
      function logout(){
         localStorage.removeItem("authToken");
        router.push(LOGIN_ROUTE);
-
      }
+
+
     if(authToken) return(
     <button className='border-2 rounded-3xl p-2 ' onClick={logout}>Log Out</button>
     );
