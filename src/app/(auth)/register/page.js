@@ -1,23 +1,25 @@
 "use client";
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import { EMAIL_REGEX } from '@/constants/regex';
 import Link from 'next/link';
-import { LOGIN_ROUTE } from '@/constants/routes';
+import { HOME_ROUTE, LOGIN_ROUTE } from '@/constants/routes';
 import PasswordInput from '../_component/PasswordInput';
 import { useRouter } from 'next/navigation';
 import { signup } from '@/api/auth';
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '@/redux/auth/authActions';
 const RegisterPage = () => {
 const { register ,handleSubmit , watch,formState:{errors}} = useForm();
 const password=watch("password");
 const router=useRouter();
-
+const {user,error}=useSelector((state)=>state.auth);
+const dispatch=useDispatch();
  async function submitForm(data) {
-    try {
-      const response = await signup({
-        name:data.name,
+  dispatch(registerUser({
+            name:data.name,
         email:data.email,
         password:data.password,
         confirmPassword:data.confirmPassword,
@@ -26,20 +28,49 @@ const router=useRouter();
           city:data.city,
           province:data.province,
         }
+  }));
+
+  //   try {
+  //     const response = await signup({
+  //       name:data.name,
+  //       email:data.email,
+  //       password:data.password,
+  //       confirmPassword:data.confirmPassword,
+  //       phone:data.phone,
+  //       address:{
+  //         city:data.city,
+  //         province:data.province,
+  //       }
+  //     });
+  //     localStorage.setItem("authToken",response.data?.authToken);
+  //     toast.success("Account created sucessfully.",{
+  //       autoClose:1000,
+  //     })
+  //     router.push(LOGIN_ROUTE)
+  //   }
+  //    catch (error) {
+  //     toast.error(error.response?.data,{
+  //       autoClose:1000,
+
+  //     })
+  //   }
+   }
+   useEffect(()=>{
+    if (error){
+            toast.error(error.response?.data,{
+        autoClose:1000,
+
       });
-      localStorage.setItem("authToken",response.data?.authToken);
+      return;
+    }
+    if(user){
       toast.success("Account created sucessfully.",{
         autoClose:1000,
       })
-      router.push(LOGIN_ROUTE)
-    }
-     catch (error) {
-      toast.error(error.response?.data,{
-        autoClose:1000,
-
-      })
-    }
-  }
+       router.push(HOME_ROUTE);
+       }
+       
+   },[user,router,error])
   return (
       <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">

@@ -4,26 +4,16 @@ import { LOGIN_ROUTE } from '@/constants/routes'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import { useState,useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const AuthMenu = () => {
-   const [authToken,setAuthToken]=useState(null);
-     const router=useRouter();
-    
-     useEffect(()=>{
-      const token=localStorage.getItem("authToken");
-      setAuthToken(token);
-
-     },[]
-     );
+  const {user}=useSelector((state)=>state.auth);
      
-     function logout(){
-        localStorage.removeItem("authToken");
-       router.push(LOGIN_ROUTE);
-     }
+     function logout(){     }
 
 
-    if(authToken) return(
-    <button className='border-2 rounded-3xl p-2 ' onClick={logout}>Log Out</button>
+    if(user) return(
+    <button className='text-sm text-secondary border-secondary border-2 rounded-3xl px-4 py-1 hover:bg-secondary hover:text-white transition' onClick={logout}>Log Out</button>
     );
 
   return (

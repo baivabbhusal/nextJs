@@ -7,6 +7,9 @@ import { HOME_ROUTE, REGISTER_ROUTE } from "@/constants/routes";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import PasswordInput from "../_component/PasswordInput";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "@/redux/auth/authActions";
+import { useEffect } from "react";
 
 const LoginPage = () => {
   const {
@@ -16,25 +19,28 @@ const LoginPage = () => {
   } = useForm();
 
   const router=useRouter();
-  const email = register("email");
+    const dispatch=useDispatch();
+    const {user,error}=useSelector((state)=>state.auth);
 
   async function submitForm(data) {
-    try {
-      const response = await login(data);
-      console.log(response);
-      localStorage.setItem("authToken",response.data?.authToken);
-      toast.success("Login Sucessfull",{
-        autoClose:1000,
-      })
-      router.push(HOME_ROUTE)
-    }
-     catch (error) {
-      toast.error(error.response?.data,{
-        autoClose:1000,
+    dispatch(loginUser(data));
 
-      })
-    }
   }
+  useEffect(()=>{
+    if(error){
+      toast.error(error.response?.data,{
+      autoClose:1000,
+      });
+      return;
+    };
+if(user) {
+        toast.success("Login Sucessfull",{
+        autoClose:1000,
+      })
+  router.push(HOME_ROUTE);}
+
+
+  },[user,error,router]);
 
   return (
       <div className="p-2 space-y-4 md:space-y-6 sm:p-6">
@@ -80,7 +86,7 @@ const LoginPage = () => {
             </div>
             <a href="#" className="text-sm font-medium text-primary hover:underline dark:text-primary-500">Forgot password?</a>
           </div>
-          <button type="submit" className="w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+          <button type="submit" className="w-full text-white bg-primary hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
           <p className="text-sm font-light text-gray-500 dark:text-gray-400">
             Don’t have an account yet? <Link href={REGISTER_ROUTE} className="font-medium text-primary hover:underline dark:text-primary-500">Sign up</Link>
           </p>
