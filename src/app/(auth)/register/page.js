@@ -17,6 +17,7 @@ const password=watch("password");
 const router=useRouter();
 const {user,error}=useSelector((state)=>state.auth);
 const dispatch=useDispatch();
+
  async function submitForm(data) {
   dispatch(registerUser({
             name:data.name,
@@ -30,30 +31,6 @@ const dispatch=useDispatch();
         }
   }));
 
-  //   try {
-  //     const response = await signup({
-  //       name:data.name,
-  //       email:data.email,
-  //       password:data.password,
-  //       confirmPassword:data.confirmPassword,
-  //       phone:data.phone,
-  //       address:{
-  //         city:data.city,
-  //         province:data.province,
-  //       }
-  //     });
-  //     localStorage.setItem("authToken",response.data?.authToken);
-  //     toast.success("Account created sucessfully.",{
-  //       autoClose:1000,
-  //     })
-  //     router.push(LOGIN_ROUTE)
-  //   }
-  //    catch (error) {
-  //     toast.error(error.response?.data,{
-  //       autoClose:1000,
-
-  //     })
-  //   }
    }
    useEffect(()=>{
     if (error){
