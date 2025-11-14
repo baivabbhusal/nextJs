@@ -4,16 +4,20 @@ import { LOGIN_ROUTE } from '@/constants/routes'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import { useState,useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '@/redux/auth/authslice';
 
 const AuthMenu = () => {
   const {user}=useSelector((state)=>state.auth);
-     
-     function logout(){     }
+  const dispatch=useDispatch();
+  const router=useRouter();
 
-
+  function logout(){
+    dispatch(logout);
+    router.push(LOGIN_ROUTE)
+  }
     if(user) return(
-    <button className='text-sm text-secondary border-secondary border-2 rounded-3xl px-4 py-1 hover:bg-secondary hover:text-white transition' onClick={logout}>Log Out</button>
+    <button className='text-sm text-secondary border-secondary border-2 rounded-3xl px-4 py-1 hover:bg-secondary hover:text-white transition' onClick={logout() }>Log Out</button>
     );
 
   return (

@@ -1,20 +1,34 @@
 import { configureStore } from '@reduxjs/toolkit';
-import  authSlice  from './auth/authslice';
-import userPreferencesSlice from './userPreferences/userPreferenceSlice';
-import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
-import persistReducer from 'redux-persist/es/persistReducer';
+import storage from 'redux-persist/lib/storage';
+import {
+  persistReducer,
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import rootReducer from './userPreferences/rootReducer';
 
 const persistConfig = {
   key: 'root',
   storage,
-}
-const persistedReducer = persistReducer(persistConfig, rootReducer)
- 
+  // Optional: whitelist slices you want to persist
+  // whitelist: ['auth', 'userPreferences'],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    auth:authSlice,
-    userPreferences:userPreferencesSlice,
-  },
-})
-export {store}
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+export const persistor = persistStore(store);
