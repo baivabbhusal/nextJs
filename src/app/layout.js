@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
       <body>
         <AppProvider >
           <MainLayout>
-                           <Header />
+             <Header />
           <main>
                {children}
             </main>  

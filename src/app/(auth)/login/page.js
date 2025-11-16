@@ -10,6 +10,8 @@ import PasswordInput from "../_component/PasswordInput";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "@/redux/auth/authActions";
 import { useEffect } from "react";
+import Spinner from "@/components/spinner";
+import Button from "@/components/Button";
 
 const LoginPage = () => {
   const {
@@ -20,7 +22,7 @@ const LoginPage = () => {
 
   const router=useRouter();
     const dispatch=useDispatch();
-    const {user,error}=useSelector((state)=>state.auth);
+    const {user,error,loading}=useSelector((state)=>state.auth);
 
   async function submitForm(data) {
     dispatch(loginUser(data));
@@ -28,7 +30,7 @@ const LoginPage = () => {
   }
   useEffect(()=>{
     if(error){
-      toast.error(error.response?.data,{
+      toast.error(error,{
       autoClose:1000,
       });
       return;
@@ -86,7 +88,8 @@ if(user) {
             </div>
             <a href="#" className="text-sm font-medium text-primary hover:underline dark:text-primary-500">Forgot password?</a>
           </div>
-          <button type="submit" className="w-full text-white bg-primary hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+          <Button loading={loading} label={"Sign In"}/>
+
           <p className="text-sm font-light text-gray-500 dark:text-gray-400">
             Don’t have an account yet? <Link href={REGISTER_ROUTE} className="font-medium text-primary hover:underline dark:text-primary-500">Sign up</Link>
           </p>
