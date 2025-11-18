@@ -54,9 +54,9 @@ const Footer = () => {
       <div>
         <h3 className="text-lg font-bold text-white mb-3">We Accept</h3>
         <div className="flex items-start flex-col gap-3">
-          <Image src={esewa} className="h-10 bg-white rounded px-5 py-2 w-auto" alt={"This is esewa logo"} />
+          {/* <Image src={esewa} className="h-10 bg-white rounded px-5 py-2 w-auto" alt={"This is esewa logo"} /> */}
           <Image src={khalti} className="h-10 bg-white rounded px-5 py-2 w-auto" alt={"This is khalti logo"} />
-          <Image src={fonepay} className="h-10 bg-white rounded px-5 py-2 w-auto" alt={"This is fonepay logo"} />
+          {/* <Image src={fonepay} className="h-10 bg-white rounded px-5 py-2 w-auto" alt={"This is fonepay logo"} /> */}
         </div>
       </div>
       <div>
@@ -64,21 +64,21 @@ const Footer = () => {
         <ul>
           <li className="text-sm text-slate-300 mb-1">
             <i className="fa fa-envelope" />
-            <span className="ml-1">info@shopnest.com</span>
+            <span className="ml-1">info@glacier.com</span>
           </li>
           <li className="text-sm text-slate-300 mb-1">
             <i className="fa fa-map-marker-alt" />
-            <span className="ml-1">22nd Street, Manhattan, NYC</span>
+            <span className="ml-1">KTM-4, Chandol, Nepal</span>
           </li>
           <li className="text-sm text-slate-300 mb-1">
             <i className="fa fa-phone" />
-            <span className="ml-1">(+01) 4581618761</span>
+            <span className="ml-1">+977 9800000000</span>
           </li>
         </ul>
       </div>
     </div>
     <div className="flex flex-col md:flex-row items-center justify-between">
-      <p className="text-slate-400 text-sm">Copyright © 2025 ShopNest.</p>
+      <p className="text-slate-400 text-sm">Copyright © 2025 Baivab Bhusal.</p>
       <div>
         <a href="#" className="text-sm text-slate-400 hover:underline">Privary Policy</a>
         <a href="#" className="text-sm text-slate-400 hover:underline">Terms &amp; Conditions</a>

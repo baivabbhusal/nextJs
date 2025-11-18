@@ -8,10 +8,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 const AdminLayout = ({ children }) => {
-  const { user } = useSelector((state) => state.auth);
-console.log("➡️ Full user object:", user);
-console.log("➡️ user.roles type:", Array.isArray(user?.roles) ? 'array' : typeof user?.roles);
-console.log("➡️ has access?", allowedAdminRoles(user?.roles));
+const {user} = useSelector((state) => state.auth);
   const router = useRouter();
 
   // ✅ Compute access ONCE
@@ -37,7 +34,6 @@ console.log("➡️ has access?", allowedAdminRoles(user?.roles));
 
   return (
     <div>
-      I am admin sir go away.
       {children}
     </div>
   );

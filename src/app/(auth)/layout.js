@@ -1,10 +1,18 @@
-import React from 'react'
-import emptyImage from "@/assets/images/products/imagePlaceholder.png"
+"use client"
 import Image from 'next/image';
-import Logo from '@/components/logo';
 import manWear from "@/assets/images/loginDesign/manWear.jpg"
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { HOME_ROUTE } from '@/constants/routes';
 
 const layout = ({children}) => {
+const {user}=useSelector((state)=>state.auth);
+const router=useRouter();
+  useEffect(()=>{
+if(user) router.push(HOME_ROUTE);
+  },[user,router]);
+
   return (
 <section className='flex py-10 md:items-center justify-center bg-slate-100 dark:bg-slate-900'>
  <div className='container mx-auto px-4 rounded-3xl dark:bg-slate-700'>

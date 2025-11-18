@@ -1,16 +1,13 @@
 "use client";
-import { login } from "@/api/auth";
 import { useForm } from "react-hook-form";
 import { EMAIL_REGEX } from "@/constants/regex";
 import Link from "next/link";
-import { HOME_ROUTE, REGISTER_ROUTE } from "@/constants/routes";
-import { useRouter } from "next/navigation";
+import { REGISTER_ROUTE } from "@/constants/routes";;
 import { toast } from "react-toastify";
 import PasswordInput from "../_component/PasswordInput";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "@/redux/auth/authActions";
 import { useEffect } from "react";
-import Spinner from "@/components/spinner";
 import Button from "@/components/Button";
 
 const LoginPage = () => {
@@ -20,9 +17,8 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const router=useRouter();
     const dispatch=useDispatch();
-    const {user,error,loading}=useSelector((state)=>state.auth);
+    const {error,loading}=useSelector((state)=>state.auth);
 
   async function submitForm(data) {
     dispatch(loginUser(data));
@@ -33,16 +29,8 @@ const LoginPage = () => {
       toast.error(error,{
       autoClose:1000,
       });
-      return;
     };
-if(user) {
-        toast.success("Login Sucessfull",{
-        autoClose:1000,
-      })
-  router.push(HOME_ROUTE);}
-
-
-  },[user,error,router]);
+  },[error]);
 
   return (
       <div className="p-2 space-y-4 md:space-y-6 sm:p-6">

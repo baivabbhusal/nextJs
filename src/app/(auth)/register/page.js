@@ -15,8 +15,7 @@ import Button from '@/components/Button';
 const RegisterPage = () => {
 const { register ,handleSubmit , watch,formState:{errors}} = useForm();
 const password=watch("password");
-const router=useRouter();
-const {user,error,loading}=useSelector((state)=>state.auth);
+const {error,loading}=useSelector((state)=>state.auth);
 const dispatch=useDispatch();
 
  async function submitForm(data) {
@@ -41,14 +40,9 @@ const dispatch=useDispatch();
       });
       return;
     }
-    if(user){
-      toast.success("Account created sucessfully.",{
-        autoClose:1000,
-      })
-       router.push(HOME_ROUTE);
-       }
+
        
-   },[user,router,error])
+   },[error])
   return (
       <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
