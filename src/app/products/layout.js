@@ -9,7 +9,7 @@ export const metadata={
 const ProductLayout = ({children}) => {
   return (
 
-            <div className='bg-slate-100 py-10'>
+            <div className='bg-slate-100 py-10 dark:bg-black dark:text-white'>
 
                 {children}
                 

@@ -9,7 +9,7 @@ import LoadingCard from "../loading";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md">
+    <div className="bg-white rounded-lg shadow-md dark:bg-slate-900 dark:text-white">
       <div className="relative">
         <Link href={`${PRODUCT_ROUTE}/${product._id}`}>
           <Image
