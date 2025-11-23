@@ -1,19 +1,26 @@
 import axios from "axios";
+import api from "./api";
 import config from "@/config";
 
+async function createProduct(data){
+    return await api.post(`/api/products/`,data);
+}
+
+async function updateProduct(id,data){
+    return await api.put(`/api/products/${id}`,data);
+}
+
+async function deleteProduct(id){
+    return await api.delete(`/api/products/${id}`);
+}
+
 async function getProducts(){
-    return axios.get(`${config.apiUrl}/api/products`)
+    return axios.get(`${config.apiUrl}/api/products`);
 }
 
 async function getProductById(id){
-    return await axios.get(`${config.apiUrl}/api/products/${id}`)
+    return await axios.get(`${config.apiUrl}/api/products/${id}`);
 }
 
-async function createProduct(data,authToken){
-    return await axios.post(`${config.apiUrl}/api/products/`,data,{
-        headers:{
-            Authorization:`Bearer ${authToken}`
-        }
-    })
-}
-export { getProducts,getProductById,createProduct };
+
+export { getProducts,getProductById,createProduct,updateProduct,deleteProduct };

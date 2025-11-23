@@ -1,30 +1,60 @@
-"use client"
-import { createProduct } from '@/api/products';
-import Button from '@/components/Button';
-import  {useForm} from 'react-hook-form';
+"use client";
+import { createProduct } from "@/api/products";
+import Button from "@/components/Button";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import Image from "next/image";
 
 const ProductForm = () => {
-        const {register,handleSubmit,formState:{errors}}=useForm();
-        const authToken=localStorage.getItem("authToken");
-        function prepareData(data){
-          const formData=new FormData();
-          formData.append("name",data.name);
-          formData.append("brand",data.brand);
-          formData.append("price",data.price);
-          formData.append("category",data.category);
-          formData.append("stock",data.stock >>1);
+  const [loading, setLoading] = useState(false);
+  const [localImageUrls,setLocalImageUrls]=useState([]);
+  const [productImages,setProductImages]=useState([]);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  function prepareData(data) {
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("brand", data.brand);
+    formData.append("price", data.price);
+    formData.append("category", data.category);
+    formData.append("stock", data.stock >> 1);
 
-          if(data.description) formData.append("description",data.description);
-          return formData;
+    if (data.description) formData.append("description", data.description);
 
+    if(productImages.length>0){
+      productImages.map((image)=>{
+        formData.append("images",image)
+      });
+    }
 
-        }
-        function submitForm(data){
-          const input=prepareData(data);
-          createProduct(input,authToken)
-          .then((response)=>console.log(response))
-          .catch((error)=>console.log(error))
-        }
+    return formData;
+  }
+  async function submitForm(data) {
+    
+    setLoading(true);
+    const input = prepareData(data);
+    try {
+      await createProduct(input);
+      reset();
+      toast.success("product created successfully.", {
+        autoClose: 1000,
+      });
+    } catch (error) {
+      toast.error(error.response?.data, {
+        autoClose: 1000,
+      });
+    }
+    finally{
+      setLoading(false);
+      setLocalImageUrls([]);
+      setProductImages([]);
+    }
+  }
   return (
     <div>
       <form onSubmit={handleSubmit(submitForm)}>
@@ -123,10 +153,7 @@ const ProductForm = () => {
             />
           </div>
 
-
-
-
-            <div className='sm:col-span-2'>
+          <div className="sm:col-span-2">
             <label
               htmlFor="description"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -140,12 +167,15 @@ const ProductForm = () => {
               placeholder="Your description here"
               {...register("description")}
             />
-            </div>
+          </div>
 
-                      <div className="sm:col-span-2 pb-2">
-             <label               
-             htmlFor="images"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Images</label>
+          <div className="sm:col-span-2 pb-2">
+            <label
+              htmlFor="images"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Images
+            </label>
             <div className="flex items-center justify-center w-full ">
               <label
                 htmlFor="images"
@@ -175,21 +205,44 @@ const ProductForm = () => {
                     drag and drop
                   </p>
                   <p className="text-xs">
-                    SVG, PNG, JPG or GIF (MAX. 800x400px)
+                     PNG, JPG or JPEG
                   </p>
                 </div>
-                <input id="images" type="file" className="hidden" />
+                <input id="images" type="file" className="hidden"
+                multiple
+                accept=".png,.jpeg,.jpg"
+                onChange={(event)=>{
+                  const files=[];
+                  const urls=[];
+
+                  Array.from(event.target.files).map((file)=>{
+                    files.push(file);
+                    urls.push(URL.createObjectURL(file));
+                  });
+                   setLocalImageUrls(urls);
+                  setProductImages(files);
+                 
+                }} />
               </label>
             </div>
-
           </div>
+          {localImageUrls.length>0 && (
+            <div className="flex items-center gap-3 py-3">
+              {localImageUrls.map((url,index)=>(
+              <Image key={index} height={50} width={50} alt="This is selected image" src={url} className="h-16 w-16 object-cover" />)
+
+              )}
+            </div>
+          )}
         </div>
-        <Button 
-        type="submit"
-        label={"Add Product"} 
-        className="items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary/70"/>
+        <Button
+          type="submit"
+          label={"Add Product"}
+          loading={loading}
+          className="items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary/70"
+        />
       </form>
     </div>
   );
-}
-export default ProductForm
+};
+export default ProductForm;
