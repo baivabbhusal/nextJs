@@ -1,12 +1,12 @@
 "use client";
-import { createProduct } from "@/api/products";
+import { createProduct, updateProduct } from "@/api/products";
 import Button from "@/components/Button";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import Image from "next/image";
 
-const ProductForm = () => {
+const ProductForm = ({product,isUpdating}) => {
   const [loading, setLoading] = useState(false);
   const [localImageUrls,setLocalImageUrls]=useState([]);
   const [productImages,setProductImages]=useState([]);
@@ -15,7 +15,11 @@ const ProductForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm( 
+    {
+      values:product,
+    }
+  );
   function prepareData(data) {
     const formData = new FormData();
     formData.append("name", data.name);
@@ -39,12 +43,21 @@ const ProductForm = () => {
     setLoading(true);
     const input = prepareData(data);
     try {
+      if (isUpdating){
+        await updateProduct(product._id,input);
+        toast.success("product Updated successfully.", {
+        autoClose: 1000,
+      });
+            }
+      else{
       await createProduct(input);
       reset();
       toast.success("product created successfully.", {
         autoClose: 1000,
       });
-    } catch (error) {
+    }
+    } 
+    catch (error) {
       toast.error(error.response?.data, {
         autoClose: 1000,
       });
@@ -128,7 +141,7 @@ const ProductForm = () => {
               })}
             >
               <option value="">Select category</option>
-              <option value="Paint">Paint</option>
+              <option value="Pant">Pant</option>
               <option value="T-shirt">T-Shirt</option>
               <option value="Hoodie">Hoodie</option>
               <option value="Underwear">Underwear</option>
@@ -237,7 +250,7 @@ const ProductForm = () => {
         </div>
         <Button
           type="submit"
-          label={"Add Product"}
+          label={isUpdating ? "Update Product":"Add Product"}
           loading={loading}
           className="items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary/70"
         />

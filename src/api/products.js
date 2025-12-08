@@ -14,8 +14,8 @@ async function deleteProduct(id){
     return await api.delete(`/api/products/${id}`);
 }
 
-async function getProducts(){
-    return axios.get(`${config.apiUrl}/api/products`);
+async function getProducts(searchParams){
+    return await axios.get(`${config.apiUrl}/api/products?${searchParams}`);
 }
 
 async function getProductById(id){

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '@/redux/auth/authslice';
+import { logout } from '@/redux/auth/authSlice';
 
 const AuthMenu = () => {
   const {user}=useSelector((state)=>state.auth);

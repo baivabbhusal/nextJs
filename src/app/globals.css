@@ -3,13 +3,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary:#00AFEF;
+  --primary:#2A55E5;
   --secondary:#f43f5e;
+  --tertiary:#01257D;
 
 }
 @theme inline{
   --color-primary:var(--primary);
   --color-secondary:var(--secondary);
+  --color-tertiary:var(--tertiary);
 }
 
 

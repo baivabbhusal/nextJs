@@ -10,14 +10,13 @@ import LoadingCard from "../loading";
 const ProductCard = ({ product }) => {
   return (
     <div className="bg-white rounded-lg shadow-md dark:bg-slate-900 dark:text-white">
-      <div className="relative">
+      <div className="relative  w-full h-48 rounded-t-lg overflow-hidden">
         <Link href={`${PRODUCT_ROUTE}/${product._id}`}>
           <Image
             src={product.imageUrls[0] ?? emptyImage}
-            className="rounded-t-lg w-full h-48 object-cover hover:scale-105"
+            className="object-contain hover:scale-105 transition-transform duration-300"
             alt={product.name}
-            height={300}
-            width={300}
+            fill
 
           ></Image>
         </Link>
@@ -44,7 +43,7 @@ const ProductCard = ({ product }) => {
         <div className="flex justify-between">
           <div>
             <span className="text-primary font-bold mr-1 text-lg">
-              {product.price}
+              Rs. {product.price}
             </span>
             <span className="line-through text-gray-500 text-sm">
               {product.price * 1.2}
