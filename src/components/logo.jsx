@@ -8,7 +8,7 @@ const Logo = () => {
   const appNameParts=appName.split(" ");
   return (
           <Link href="#" className="text-xl">
-        <div className="flex items-center justify-start font-semibold hover:font-bold w-40">
+        <div className="flex items-center justify-start font-bold hover:font-extrabold w-40">
           <span className="text-primary">{appNameParts[0]}</span>
           <span className="text-secondary">{appNameParts[1]}</span>
           

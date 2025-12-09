@@ -1,4 +1,3 @@
-import BackButton from '@/components/BackButton'
 import ProductTable from './_components/Table'
 
 const ProductManagement =async () => {

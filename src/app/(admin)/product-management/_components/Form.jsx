@@ -147,6 +147,7 @@ const ProductForm = ({product,isUpdating}) => {
               <option value="Underwear">Underwear</option>
               <option value="Coat">Coat</option>
               <option value="Traditional">Traditional</option>
+              <option value="shirt">Shirt</option>
             </select>
             <p className="text-red-500 mt-2">{errors.category?.message}</p>
           </div>

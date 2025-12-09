@@ -9,8 +9,8 @@ import LoadingCard from "../loading";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md dark:bg-slate-900 dark:text-white">
-      <div className="relative  w-full h-48 rounded-t-lg overflow-hidden">
+    <div className="bg-white rounded-lg hover:shadow-md dark:bg-slate-900 dark:text-white">
+      <div className="relative  w-full h-40 rounded-t-lg overflow-hidden">
         <Link href={`${PRODUCT_ROUTE}/${product._id}`}>
           <Image
             src={product.imageUrls[0] ?? emptyImage}
