@@ -72,12 +72,10 @@ const ProductTable = () => {
   const [sortBy, setSortBy] = useState("createdAt");
   const [sortOrder, setSortOrder] = useState(-1);
   const { refresh } = useSelector((state) => state.product);
-  const dispatch = useDispatch();
   useEffect(() => {
     setLoading(true);
-    let query = "";
-    if (sortBy)
-      query = query + "sort=" + JSON.stringify({ [sortBy]: sortOrder });
+    const query ={};
+    if (sortBy) query.sort=JSON.stringify({ [sortBy]: sortOrder })
     getProducts(query)
       .then((response) => setProducts(response.data))
       .finally(() => {
@@ -135,7 +133,7 @@ const ProductTable = () => {
                 <th
                   scope="col"
                   key={index}
-                  className="px-4 py-3"
+                  className="px-4 py-3 cursor-pointer"
                   onClick={() => {
                     if (!column.sortable) return;
                     setSortBy(column.key);

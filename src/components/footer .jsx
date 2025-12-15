@@ -9,11 +9,11 @@ import fonepay from "@/assets/images/payments/fonepay.png"
 const Footer = () => {
   return (
 
-<footer className="py-16 bg-slate-800">
+<footer className="py-16 bg-primary dark:bg-slate-800">
   <div className="container mx-auto px-4">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 border-b border-b-slate-600 pb-16 mb-5">
       <div>
-        <Logo />
+        <Logo className="bg-white p-4 rounded-2xl dark:bg-black "/>
         <p className="text-sm text-slate-400 py-3">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Laboriosam nemo veniam tenetur non eius. Dicta non quos tenetur
