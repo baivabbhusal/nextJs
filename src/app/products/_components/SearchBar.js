@@ -1,6 +1,6 @@
 "use client"
 import { PRODUCT_ROUTE } from "@/constants/routes";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { MdCancel, MdClose } from "react-icons/md";
@@ -8,10 +8,11 @@ import { MdCancel, MdClose } from "react-icons/md";
 const SearchBar = () => {
     const [productName,setProductName]=useState("");
     const router=useRouter();
+     const searchParams=useSearchParams();
 
     function searchProduct(e){
         if(e.key!="Enter") return;
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams.toString());
     params.set("name", productName);
     router.push(`?${params.toString()}`);
         
@@ -29,7 +30,7 @@ const SearchBar = () => {
         <input
           type="text"
           id="search"
-          className="block w-full py-2 ps-9 bg-gray-50 text-heading text-sm rounded-base border border-gray-300 focus:ring-brand focus:border-brand shadow-2xs rounded-xl placeholder:text-body"
+          className="block w-full py-2 ps-9 bg-gray-50 text-heading text-sm rounded-base border border-gray-300 focus:ring-brand focus:border-brand shadow-2xs rounded-xl placeholder:text-body dark:bg-slate-600"
           placeholder="Search for products..."
           onChange={(e)=>setProductName(e.target.value)}
           onKeyDown={searchProduct}

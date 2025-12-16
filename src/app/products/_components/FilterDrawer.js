@@ -1,4 +1,5 @@
-import { useRouter } from "next/navigation";
+"use client"
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
 const FilterDrawer = ({ showFilter, setShowFilter }) => {
@@ -7,11 +8,12 @@ const FilterDrawer = ({ showFilter, setShowFilter }) => {
   const [min,setMin]=useState(0);
   const [max,setMax]=useState(10000000);
   const [category,setCategory]=useState(null);
+  const searchParams=useSearchParams();
 
   const router = useRouter();
 
   function setFilter() {
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams.toString());
     params.set("limit", limit);
     params.set("sort", sort);
     params.set("min", min<0?0:min);

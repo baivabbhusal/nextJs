@@ -5,7 +5,6 @@ import { FaCartPlus, FaStar, FaStarHalf } from "react-icons/fa";
 import { PRODUCT_ROUTE } from "@/constants/routes";
 
 import emptyImage from "@/assets/images/products/imagePlaceholder.png"
-import LoadingCard from "../loading";
 
 const ProductCard = ({ product }) => {
   return (
@@ -26,6 +25,9 @@ const ProductCard = ({ product }) => {
         </span>
       </div>
       <div className="p-4">
+        <div className="flex items-center justify-between">
+<Link href="#" class="bg-primary/30  text-heading text-xs font-medium px-1.5 py-0.5 rounded-full">{product.category}</Link>
+        </div>
         <h3 className="font-semibold text-xl hover:text-primary">
           <Link href={`${PRODUCT_ROUTE}/${product._id}`}>
           {product.name}
