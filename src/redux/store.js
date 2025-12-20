@@ -15,8 +15,8 @@ import rootReducer from './userPreferences/rootReducer';
 const persistConfig = {
   key: 'root',
   storage,
-  // Optional: whitelist slices you want to persist
-  // whitelist: ['auth', 'userPreferences'],
+ 
+   whitelist: ['auth', 'userPreferences',"cart"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -2,9 +2,9 @@
 import React from 'react'
 import Logo from './logo'
 import NavbarMenu from './navbar'
-import { BsCart3 } from "react-icons/bs";
 import AuthMenu from './AuthMenu';
 import ToggleTheme from './ToggleTheme'
+import CartButton from './CartButton';
 
 const Header = () => {
   return (
@@ -17,7 +17,8 @@ const Header = () => {
 
       <div className="flex items-center gap-3">
         <div className="text-sm">
-        <BsCart3 />
+         <CartButton />
+        
         
         </div>
          <ToggleTheme />

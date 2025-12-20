@@ -1,4 +1,4 @@
-import Model from "@/components/Model";
+import Model from "@/components/Modal";
 import ProductForm from "../_components/Form";
 import { MdErrorOutline } from "react-icons/md";
 import { IoArrowBackOutline } from "react-icons/io5";

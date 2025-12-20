@@ -8,12 +8,11 @@ export const metadata={
 
 const ProductLayout = ({children}) => {
   return (
-
-            <div className='bg-slate-100 py-10 dark:bg-black dark:text-white'>
-
-                {children}
-                
-            </div>
+    <div className="bg-slate-100 dark:bg-slate-800">
+      <div className="container mx-auto px-4 pb-16 pt-4">
+        <div className="min-h-screen">{children}</div>
+      </div>
+    </div>
 
    
   )

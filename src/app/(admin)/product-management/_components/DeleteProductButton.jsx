@@ -1,6 +1,6 @@
 "use client"
 import { deleteProduct } from '@/api/products';
-import Model from '@/components/Model';
+import Model from '@/components/Modal';
 import { refreshList } from '@/redux/product/productSlice';
 import React, { useState } from 'react'
 import { FaTrash } from 'react-icons/fa';

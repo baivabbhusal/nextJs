@@ -1,5 +1,5 @@
 import React from 'react'
-import Spinner from './spinner'
+import Spinner from './Spinner'
 
 const Button = ({label,loading=false,type="submit",className="bg-primary hover:bg-secondary"}) => {
   return (

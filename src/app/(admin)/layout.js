@@ -1,6 +1,6 @@
 "use client";
 
-import Spinner from '@/components/spinner';
+import Spinner from '@/components/Spinner';
 import { HOME_ROUTE, LOGIN_ROUTE } from '@/constants/routes';
 import { allowedAdminRoles } from '@/helpers/auth';
 import { useRouter } from 'next/navigation';

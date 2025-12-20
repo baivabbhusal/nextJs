@@ -1,7 +1,7 @@
 import axios from "axios";
 import api from "./api";
 import config from "@/config";
-import formatParams from "@/helpers/formatSearchparams";
+import formatParams from "@/helpers/formatParams";
 
 async function createProduct(data){
     return await api.post(`/api/products/`,data);

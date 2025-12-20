@@ -1,10 +1,11 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { FaCartPlus, FaStar, FaStarHalf } from "react-icons/fa";
+import {  FaStar, FaStarHalf } from "react-icons/fa";
 import { PRODUCT_ROUTE } from "@/constants/routes";
 
 import emptyImage from "@/assets/images/products/imagePlaceholder.png"
+import AddToCart from "./AddToCart";
 
 const ProductCard = ({ product }) => {
   return (
@@ -51,9 +52,8 @@ const ProductCard = ({ product }) => {
               {product.price * 1.2}
             </span>
           </div>
-          <button className="text-primary">
-            <FaCartPlus />
-          </button>
+          <AddToCart product={product}/>
+
         </div>
       </div>
     </div>

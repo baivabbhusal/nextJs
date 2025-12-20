@@ -27,7 +27,7 @@ import { PRODUCT_MANAGEMENT_ROUTE } from "@/constants/routes";
 import DeleteProductButton from "./DeleteProductButton";
 import { useDispatch, useSelector } from "react-redux";
 import { HiMiniChevronUpDown } from "react-icons/hi2";
-import Spinner from "@/components/spinner";
+import Spinner from "@/components/Spinner";
 
 const columns = [
   {
